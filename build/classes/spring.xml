@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd" [
+<!ENTITY contextInclude SYSTEM "org/springframework/web/context/WEB-INF/contextInclude.xml">
+]>
+
+<beans>
+    
+    <!-- Bean of Triangle Class -->
+    <bean id="tri" class="org.java.Triangle">
+        <property name="pointA" ref="one"/> <!-- Reference of Point Class "one" -->
+        <property name="pointB" ref="two"/> <!-- Reference of Point Class "two" -->
+        <property name="pointC" ref="three"/> <!-- Reference of Point Class "three" -->
+        <property name="rbm" ref="messageSource"/> <!-- Reference of ResourceBundleMessageSource Class "messageSource" -->
+        
+    </bean>
+
+    <bean id="one" class="org.java.Point"> <!-- Bean of Point Class -->
+        <property name="x" value="0"/>
+        <property name="y" value="0"/>
+    </bean>
+    
+    <bean id="two" class="org.java.Point"> <!-- Bean of Point Class -->
+        <property name="x" value="0"/>
+        <property name="y" value="10"/>
+    </bean>
+    
+    <bean id="three" class="org.java.Point"> <!-- Bean of Point Class -->
+        <property name="x" value="10"/>
+        <property name="y" value="10"/>
+    </bean>
+    
+    <!-- Bean of ResourceBundleMessageSource Class -->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <!--<property name="basename" value="myMsg"/>-->  <!-- If you have single Property File -->
+        <property name="basenames">  <!-- If you have multiple Property Files -->
+            <list>  <!-- use wiring collection to provide multiple file name -->
+                <value>myMsg</value>                
+                <value>myPoint</value>   
+            </list>
+        </property>        
+    </bean>
+    
+</beans>
